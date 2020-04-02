@@ -1,3 +1,8 @@
+# spellnum() function version 1.0
+# Author: Chalermsak Chatdokmaiprai chalermsak.c@ku.th
+# Date: March 23, 2019
+#
+
 def spellnum(n):
     '''Assuming n is a nonnegative integer
     returns its English spelling
@@ -84,3 +89,12 @@ def spell_10(n):
     else: # no tens
         result = sayDigit[rem]
     return result
+
+def go():
+    testnumber = 98706543210587
+    print(f'Calling spellnum({testnumber})')
+    print(spellnum(testnumber))
+
+if __name__ == '__main__':
+    go()
+
