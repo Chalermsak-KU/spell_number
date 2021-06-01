@@ -1,6 +1,6 @@
-# spellnum() function version 1.0
+# spellnum() function version 2.0
 # Author: Chalermsak Chatdokmaiprai chalermsak.c@ku.th
-# Date: March 23, 2019
+# Date: June 1, 2021
 #
 
 def spellnum(n):
@@ -13,7 +13,10 @@ def spellnum(n):
     if nmillion > 0:
         result += spellnum(nmillion) + ' million'
         if rem > 0:
-            result += ' ' + spell_submillion(rem)
+            if rem >= 100:
+                result += ' ' + spell_submillion(rem)
+            else:
+                result += ' and ' + spell_10(rem)
     else: # no millions
         if rem > 0:
             result = spell_submillion(rem)
@@ -32,7 +35,10 @@ def spell_submillion(n):
     if nthousand > 0:
         result += spell_100(nthousand) + ' thousand'
         if rem > 0:
-            result += ' ' + spell_100(rem)
+            if rem >= 100:
+                result += ' ' + spell_100(rem)
+            else:
+                result += ' and ' + spell_10(rem)
     else:  # no thousands
         if rem > 0:
             result = spell_100(rem)
@@ -54,7 +60,7 @@ def spell_100(n):
     if nhundred > 0:
         result += sayDigit[nhundred] + ' hundred'
         if rem > 0:
-            result += ' ' + spell_10(rem)
+            result += ' and ' + spell_10(rem)
     else: # no hundreds
         if rem > 0:
             result = spell_10(rem)
@@ -94,6 +100,9 @@ def go():
     testnumber = 98706543210587
     print(f'Calling spellnum({testnumber})')
     print(spellnum(testnumber))
+    while True:
+        n = int(input('?'))
+        print(spellnum(n))
 
 if __name__ == '__main__':
     go()
